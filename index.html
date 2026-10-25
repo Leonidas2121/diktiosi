@@ -46,10 +46,10 @@
     <link rel="stylesheet" href="css/layout/services.css" />
     <link rel="stylesheet" href="css/layout/pricing.css" />
     <link rel="stylesheet" href="css/layout/compliance.css" />
-    <link rel="stylesheet" href="css/layout/contact.css?v=5" />
+    <link rel="stylesheet" href="css/layout/contact.css?v=6" />
     <link rel="stylesheet" href="css/layout/contact-form.css?v=5" />
     <link rel="stylesheet" href="css/layout/footer.css" />
-    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/responsive.css?v=6" />
 
     <!-- Scripts (defer: τρέχουν αφού φορτώσει η σελίδα) -->
     <script src="js/modules/nav.js" defer></script>
@@ -755,14 +755,30 @@
             <div class="contact-divider"><span>ή επικοινωνήστε απευθείας</span></div>
 
             <div class="direct-contact-grid">
-              <!-- Τηλέφωνο -->
-              <a href="tel:+306900000000" class="direct-contact-card">
+              <!-- Τηλέφωνο: κλήση μόνο σε κινητό, αντιγραφή & WhatsApp παντού -->
+              <div class="direct-contact-card phone-card">
                 <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
                 <div class="contact-info">
                   <span class="contact-label">Τηλέφωνο / Viber / WhatsApp</span>
-                  <span class="contact-val">+30 690 000 0000</span>
+                  <a href="tel:+306994243547" class="contact-val tel-link">+30 699 424 3547</a>
+                  <div class="email-actions">
+                    <a href="tel:+306994243547" class="email-action mobile-only">
+                      <i class="fas fa-phone-alt"></i> Κλήση
+                    </a>
+                    <button type="button" class="email-action" data-copy="6994243547">
+                      <i class="far fa-copy"></i> <span>Αντιγραφή</span>
+                    </button>
+                    <a
+                      class="email-action"
+                      href="https://wa.me/306994243547?text=Γεια%20σας,%20ενδιαφέρομαι%20για%20το%20site%20της%20ΙΚΕ%20μου"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                  </div>
                 </div>
-              </a>
+              </div>
 
               <!-- Email: αντιγραφή ή άνοιγμα σε Gmail / Outlook web (χωρίς mailto) -->
               <div class="direct-contact-card email-card">
@@ -855,7 +871,7 @@
       </button>
 
       <a
-        href="https://wa.me/30XXXXXXXXXX?text=Γεια%20σας,%20ενδιαφέρομαι%20για%20το%20site%20της%20ΙΚΕ%20μου"
+        href="https://wa.me/306994243547?text=Γεια%20σας,%20ενδιαφέρομαι%20για%20το%20site%20της%20ΙΚΕ%20μου"
         target="_blank"
         rel="noopener"
         class="whatsapp-btn"

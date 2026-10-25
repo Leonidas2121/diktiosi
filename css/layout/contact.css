@@ -138,14 +138,37 @@
   overflow-wrap: anywhere;
 }
 
-/* --- Κάρτα email: αντιγραφή & webmail ------------------------------------ */
-.email-card {
+/* --- Κάρτες email & τηλεφώνου: αντιγραφή, webmail, κλήση ---------------- */
+.email-card,
+.phone-card {
   align-items: flex-start;
 }
 
 .contact-val--select {
   user-select: all;
   cursor: text;
+}
+
+/* Ο αριθμός είναι σύνδεσμος κλήσης μόνο σε κινητό */
+.tel-link {
+  pointer-events: none;
+  user-select: all;
+  cursor: text;
+}
+
+.mobile-only {
+  display: none !important;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .tel-link {
+    pointer-events: auto;
+    cursor: pointer;
+  }
+
+  .mobile-only {
+    display: inline-flex !important;
+  }
 }
 
 .email-actions {
@@ -181,19 +204,22 @@
 }
 
 /* Όταν η κάρτα γίνεται λευκή στο hover */
-.email-card:hover .email-action {
+.email-card:hover .email-action,
+.phone-card:hover .email-action {
   border-color: var(--border-soft);
   background: var(--bg-surface);
 }
 
-.email-card:hover .email-action:hover {
+.email-card:hover .email-action:hover,
+.phone-card:hover .email-action:hover {
   background: var(--primary);
   border-color: var(--primary);
   color: #fff;
 }
 
 .email-action.is-copied,
-.email-card:hover .email-action.is-copied {
+.email-card:hover .email-action.is-copied,
+.phone-card:hover .email-action.is-copied {
   background: var(--success);
   border-color: var(--success);
   color: #fff;
