@@ -99,17 +99,24 @@ window.Diktiosi.initContactForm = function () {
 
     setState("loading");
 
+    // Αν η υπηρεσία δεν απαντήσει σε 20", σταματάμε την αναμονή
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 20000);
+
     try {
       const data = Object.fromEntries(new FormData(form).entries());
       const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify(data),
+        signal: controller.signal,
       });
       const result = await response.json().catch(() => ({}));
 
       if (!response.ok || String(result.success) === "false") {
-        throw new Error(result.message || "HTTP " + response.status);
+        const error = new Error(result.message || "HTTP " + response.status);
+        error.serviceMessage = result.message;
+        throw error;
       }
 
       form.reset();
@@ -117,8 +124,12 @@ window.Diktiosi.initContactForm = function () {
     } catch (err) {
       console.error("[Diktiosi] Αποτυχία αποστολής φόρμας:", err);
       setState("idle");
-      status.textContent =
-        "Κάτι πήγε στραβά με την αποστολή. Δοκιμάστε ξανά ή επικοινωνήστε μαζί μας τηλεφωνικά.";
+      status.textContent = err.serviceMessage
+        ? "Η αποστολή δεν ολοκληρώθηκε: " + err.serviceMessage
+        : "Κάτι πήγε στραβά με την αποστολή. Δοκιμάστε ξανά ή επικοινωνήστε μαζί μας τηλεφωνικά.";
+      status.scrollIntoView({ behavior: "smooth", block: "center" });
+    } finally {
+      clearTimeout(timeout);
     }
   });
 
