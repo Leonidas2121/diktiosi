@@ -1,7 +1,7 @@
 # Ανεβάζει αυτόματα το site στο hosting του Papaki (diktiosi.gr)
 # σε κάθε push στο main. Ανεβαίνουν μόνο τα αρχεία που άλλαξαν.
 # Τα στοιχεία σύνδεσης βρίσκονται στα GitHub Secrets:
-#   FTP_SERVER, FTP_USERNAME, FTP_PASSWORD
+#   FTP_USERNAME, FTP_PASSWORD
 name: Deploy to Papaki
 
 on:
@@ -23,7 +23,7 @@ jobs:
       - name: Ανέβασμα μέσω FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.FTP_SERVER }}
+          server: diktip.ftp.tb-hosting.com
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftp # ο server του Papaki δεν υποστηρίζει FTPS
