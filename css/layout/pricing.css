@@ -1,0 +1,343 @@
+/* ==========================================================================
+   PRICING
+   ========================================================================== */
+.pricing {
+  background:
+    radial-gradient(ellipse 60% 40% at 50% 0%, rgba(253, 186, 116, 0.25), transparent 70%),
+    var(--bg-surface);
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  align-items: stretch;
+  perspective: 1400px;
+}
+
+/* --- Κάρτα ----------------------------------------------------------------- */
+.pricing-card {
+  --rx: 0deg;
+  --ry: 0deg;
+  --lift: 0px;
+  --scale: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 2.3rem 1.7rem 1.8rem;
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-card);
+  transform: perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry)) translateY(var(--lift)) scale(var(--scale));
+  transform-style: preserve-3d;
+  transition:
+    transform var(--dur) var(--ease-out),
+    box-shadow var(--dur) var(--ease-out),
+    border-color var(--dur) ease;
+}
+
+.pricing-card:hover {
+  --lift: -8px;
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--border-strong);
+}
+
+/* --- Featured (2ο πακέτο): περιστρεφόμενο gradient border ------------------ */
+.pricing-card.featured {
+  --scale: 1.04;
+  z-index: 2;
+  border: 2px solid transparent;
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    conic-gradient(
+        from var(--border-angle),
+        var(--primary),
+        var(--accent),
+        #fdba74,
+        var(--primary)
+      )
+      border-box;
+  box-shadow: var(--shadow-featured);
+  animation: spin-border 5s linear infinite;
+}
+
+/* Κρατάμε το spin του border και μετά το reveal */
+.js .pricing-card.featured.is-visible {
+  animation:
+    reveal-up var(--dur-slow) var(--ease-out) var(--reveal-delay, 0ms) both,
+    spin-border 5s linear infinite;
+}
+
+.pricing-card.featured:hover {
+  box-shadow: 0 40px 80px -24px rgba(249, 115, 22, 0.55);
+}
+
+.popular-ribbon {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  translate: -50% 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 1.1rem;
+  border-radius: var(--radius-pill);
+  background: var(--gradient-brand);
+  color: #fff;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 0 8px 20px -6px rgba(225, 29, 72, 0.6);
+}
+
+/* --- Header κάρτας --------------------------------------------------------- */
+.card-header {
+  margin-bottom: 1.6rem;
+  padding-bottom: 1.4rem;
+  border-bottom: 1px dashed var(--border-soft);
+}
+
+.card-header h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.45rem;
+}
+
+.featured .card-header h3 {
+  font-size: 1.4rem;
+}
+
+.plan-desc {
+  min-height: 46px;
+  margin-bottom: 1.2rem;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.2rem;
+}
+
+.price .currency {
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
+.price .amount {
+  font-family: var(--font-heading);
+  font-size: 3.4rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.price .period {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+/* Κατασκευή + Ετήσια Συντήρηση */
+.split-pricing {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-soft);
+}
+
+.featured .split-pricing {
+  background: var(--primary-light);
+  border-color: var(--primary-border);
+}
+
+.split-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.split-label {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.split-amount {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 800;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+.featured .split-amount {
+  color: var(--primary-dark);
+}
+
+.split-amount small {
+  font-family: var(--font-body);
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.split-divider {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.vat-tag {
+  display: inline-block;
+  margin-top: 0.6rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 6px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-soft);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.badge-sub {
+  display: block;
+  margin-top: 0.45rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+.featured .badge-sub {
+  color: var(--primary-hover);
+}
+
+/* --- Features -------------------------------------------------------------- */
+.features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-bottom: 1.8rem;
+}
+
+.features-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.features-list li i {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 0.62rem;
+  background: #ecfdf5;
+  color: var(--success);
+}
+
+.features-list li i.fa-check-double {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+.features-list li.disabled {
+  color: var(--text-light);
+  text-decoration: line-through;
+}
+
+.features-list li.disabled i {
+  background: var(--bg-surface);
+  color: var(--text-light);
+}
+
+/* --- Demo links ------------------------------------------------------------ */
+.demo-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: auto;
+  margin-bottom: 1.1rem;
+}
+
+.demo-title {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-light);
+}
+
+.preview-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.6rem 0.85rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  border: 1px dashed var(--border-strong);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: all var(--dur-fast) ease;
+}
+
+.preview-link i {
+  font-size: 0.75rem;
+  transition: transform var(--dur) var(--ease-spring);
+}
+
+.preview-link:hover {
+  background: #fff;
+  border-style: solid;
+  border-color: var(--primary);
+  color: var(--primary-dark);
+}
+
+.preview-link:hover i {
+  transform: translate(3px, -3px);
+}
+
+.featured .preview-link {
+  background: var(--primary-light);
+  border-color: var(--primary-border);
+  color: var(--primary-dark);
+}
+
+.preview-note {
+  justify-content: flex-start;
+  cursor: default;
+}
+
+.preview-note i {
+  color: var(--primary);
+}
+
+.preview-note:hover {
+  background: var(--bg-surface);
+  border-style: dashed;
+  border-color: var(--border-strong);
+  color: var(--text-muted);
+}
+
+.preview-note:hover i {
+  transform: none;
+}

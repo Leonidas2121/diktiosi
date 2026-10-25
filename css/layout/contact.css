@@ -1,0 +1,150 @@
+/* ==========================================================================
+   CONTACT
+   ========================================================================== */
+.contact-box {
+  position: relative;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: clamp(2.5rem, 2rem + 4vw, 4.5rem) clamp(1.4rem, 1rem + 3vw, 4rem);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  background-size: 200% 200%;
+  animation: gradient-shift 10s ease infinite;
+  color: #fff;
+  text-align: center;
+  overflow: hidden;
+  isolation: isolate;
+  box-shadow: 0 40px 80px -30px rgba(225, 29, 72, 0.6);
+}
+
+/* Διακοσμητικοί κύκλοι */
+.contact-box::before,
+.contact-box::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.contact-box::before {
+  width: 420px;
+  height: 420px;
+  top: -200px;
+  left: -140px;
+}
+
+.contact-box::after {
+  width: 560px;
+  height: 560px;
+  bottom: -320px;
+  right: -180px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.contact-box .section-tag {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #fff;
+}
+
+.contact-box .section-tag::before {
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.25);
+}
+
+.contact-box h2 {
+  font-size: var(--fs-h2);
+  margin-bottom: 0.8rem;
+}
+
+.contact-subtitle {
+  max-width: 600px;
+  margin: 0 auto 2.6rem;
+  font-size: 1.08rem;
+  opacity: 0.92;
+}
+
+.direct-contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.direct-contact-card {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  padding: 1.3rem 1.4rem;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  text-align: left;
+  transition:
+    transform var(--dur) var(--ease-out),
+    background-color var(--dur) ease,
+    color var(--dur) ease,
+    box-shadow var(--dur) ease;
+}
+
+.direct-contact-card:hover {
+  transform: translateY(-5px);
+  background: #fff;
+  color: var(--text-main);
+  box-shadow: 0 20px 40px -16px rgba(15, 23, 42, 0.4);
+}
+
+.contact-icon {
+  width: 54px;
+  height: 54px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: #fff;
+  color: var(--primary);
+  font-size: 1.3rem;
+  transition: transform var(--dur) var(--ease-spring), background-color var(--dur) ease, color var(--dur) ease;
+}
+
+.direct-contact-card:hover .contact-icon {
+  transform: rotate(-10deg) scale(1.06);
+  background: var(--gradient-brand);
+  color: #fff;
+}
+
+.contact-info {
+  min-width: 0;
+}
+
+.contact-label {
+  display: block;
+  margin-bottom: 0.15rem;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.contact-val {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 1.12rem;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.contact-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: var(--radius-pill);
+  background: rgba(15, 23, 42, 0.18);
+  font-size: 0.92rem;
+  font-weight: 600;
+}

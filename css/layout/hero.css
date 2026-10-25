@@ -1,0 +1,425 @@
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: calc(var(--header-h) + 3rem) 0 9rem;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* --- Background: blobs + grid ---------------------------------------------- */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.hero-grid-pattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(15, 23, 42, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 80%);
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.55;
+  animation: blob 18s ease-in-out infinite;
+  /* parallax από effects.js */
+  translate: calc(var(--px, 0) * var(--depth, 20px)) calc(var(--py, 0) * var(--depth, 20px));
+  transition: translate 0.6s var(--ease-out);
+}
+
+.blob-1 {
+  --depth: 40px;
+  width: 520px;
+  height: 520px;
+  top: -140px;
+  right: -120px;
+  background: #fdba74;
+}
+
+.blob-2 {
+  --depth: -30px;
+  width: 420px;
+  height: 420px;
+  bottom: -120px;
+  left: -140px;
+  background: #fda4af;
+  animation-delay: -6s;
+}
+
+.blob-3 {
+  --depth: 25px;
+  width: 300px;
+  height: 300px;
+  top: 35%;
+  left: 40%;
+  background: #fed7aa;
+  animation-delay: -12s;
+  opacity: 0.45;
+}
+
+/* --- Layout ---------------------------------------------------------------- */
+.hero-layout {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: 4rem;
+}
+
+.hero-content .badge-pill {
+  margin-bottom: 1.8rem;
+}
+
+.hero h1 {
+  font-size: var(--fs-hero);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  margin-bottom: 1.5rem;
+}
+
+/* Typewriter λέξη */
+.typewriter {
+  display: inline;
+}
+
+.typewriter::after {
+  content: "";
+  display: inline-block;
+  width: 3px;
+  height: 0.9em;
+  margin-left: 4px;
+  vertical-align: -0.08em;
+  background: var(--accent);
+  border-radius: 2px;
+  animation: caret-blink 1s steps(1) infinite;
+}
+
+.hero-subtitle {
+  max-width: 600px;
+  margin-bottom: 2.4rem;
+  font-size: clamp(1.05rem, 1rem + 0.3vw, 1.2rem);
+  color: var(--text-muted);
+}
+
+.hero-subtitle strong {
+  color: var(--text-main);
+  white-space: nowrap;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2.8rem;
+}
+
+.trust-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 1.6rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.trust-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.trust-item i {
+  color: var(--success);
+}
+
+/* --- Visual: browser mockup ------------------------------------------------ */
+.hero-visual {
+  position: relative;
+  perspective: 1200px;
+}
+
+.mockup {
+  position: relative;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 50px 100px -30px rgba(15, 23, 42, 0.35),
+    0 0 0 1px rgba(15, 23, 42, 0.04);
+  overflow: hidden;
+  transform: rotateY(-10deg) rotateX(6deg);
+  transition: transform 0.8s var(--ease-out);
+}
+
+.hero-visual:hover .mockup {
+  transform: rotateY(0) rotateX(0);
+}
+
+.mockup-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.85rem 1rem;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.mockup-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.mockup-dots span {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #f87171;
+}
+.mockup-dots span:nth-child(2) { background: #fbbf24; }
+.mockup-dots span:nth-child(3) { background: #34d399; }
+
+.mockup-url {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--radius-pill);
+  background: #fff;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.mockup-url i {
+  color: var(--success);
+  font-size: 0.7rem;
+}
+
+.mockup-body {
+  padding: 1.6rem;
+}
+
+.mock-hero {
+  height: 92px;
+  border-radius: var(--radius-sm);
+  background: var(--gradient-brand);
+  background-size: 200% 200%;
+  animation: gradient-shift 6s ease infinite;
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 1.2rem;
+}
+
+.mock-line {
+  height: 8px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.mock-line.w-60 { width: 60%; }
+.mock-line.w-40 { width: 40%; opacity: 0.6; }
+
+.mock-panel {
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.1rem;
+}
+
+.mock-panel-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-light);
+  margin-bottom: 0.7rem;
+}
+
+.mock-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.45rem 0;
+  font-size: 0.86rem;
+  font-weight: 600;
+  border-bottom: 1px dashed var(--border-soft);
+}
+
+.mock-row:last-child {
+  border-bottom: none;
+}
+
+.mock-row i {
+  color: var(--success);
+}
+
+/* Floating chips γύρω από το mockup */
+.float-chip {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  background: #fff;
+  box-shadow: var(--shadow-card-hover);
+  font-size: 0.85rem;
+  font-weight: 700;
+  white-space: nowrap;
+  animation: float 6s ease-in-out infinite;
+}
+
+.float-chip small {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+.float-chip .chip-icon {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  font-size: 0.95rem;
+}
+
+.chip-price {
+  top: -26px;
+  left: -40px;
+}
+.chip-price .chip-icon {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+.chip-price strong {
+  font-size: 1.05rem;
+}
+
+.chip-ssl {
+  bottom: 60px;
+  right: -36px;
+  animation-delay: -2s;
+}
+.chip-ssl .chip-icon {
+  background: #ecfdf5;
+  color: var(--success);
+}
+
+.chip-time {
+  bottom: -26px;
+  left: 20px;
+  animation-delay: -4s;
+}
+.chip-time .chip-icon {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* --- Scroll indicator ------------------------------------------------------ */
+.scroll-indicator {
+  position: absolute;
+  left: 50%;
+  bottom: 4.2rem;
+  translate: -50% 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  transition: color var(--dur-fast);
+}
+
+.scroll-indicator:hover {
+  color: var(--primary);
+}
+
+.mouse {
+  position: relative;
+  width: 24px;
+  height: 38px;
+  border: 2px solid currentColor;
+  border-radius: 14px;
+}
+
+.mouse::before {
+  content: "";
+  position: absolute;
+  top: 7px;
+  left: 50%;
+  width: 4px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--primary);
+  animation: scroll-wheel 1.8s ease-in-out infinite;
+}
+
+/* --- Marquee (λωρίδα κάτω από το hero) ------------------------------------- */
+.marquee-wrap {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  padding: 2rem 0;
+  margin-top: -3.5rem;
+}
+
+.marquee {
+  padding: 1.3rem 0;
+  background: var(--bg-dark);
+  color: #fff;
+  overflow: hidden;
+  rotate: -1.2deg;
+  margin: 0 -2%;
+  box-shadow: 0 20px 40px -20px rgba(15, 23, 42, 0.5);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 2.2rem;
+  padding-right: 2.2rem;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.marquee-item i {
+  color: var(--primary);
+  font-size: 0.8rem;
+}

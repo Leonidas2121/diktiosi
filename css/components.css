@@ -1,0 +1,364 @@
+/* ==========================================================================
+   COMPONENTS — επαναχρησιμοποιούμενα κομμάτια
+   ========================================================================== */
+
+/* --- Buttons --------------------------------------------------------------- */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.9rem 1.8rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.2;
+  border: 1px solid transparent;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    transform var(--dur) var(--ease-spring),
+    box-shadow var(--dur) var(--ease-out),
+    background-color var(--dur-fast) ease,
+    border-color var(--dur-fast) ease,
+    color var(--dur-fast) ease,
+    translate 0.3s var(--ease-out);
+}
+
+.btn i {
+  transition: transform var(--dur) var(--ease-spring);
+}
+
+.btn:hover i.fa-arrow-right {
+  transform: translateX(4px);
+}
+
+.btn-primary {
+  background: var(--gradient-btn);
+  color: #fff;
+  box-shadow: var(--shadow-brand);
+}
+
+/* gradient που "γλιστράει" στο hover */
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--gradient-brand);
+  opacity: 0;
+  transition: opacity var(--dur) ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px -10px rgba(249, 115, 22, 0.65);
+}
+
+.btn-primary:hover::before {
+  opacity: 1;
+}
+
+.btn-outline {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: var(--border-strong);
+  color: var(--text-main);
+  backdrop-filter: blur(8px);
+}
+
+.btn-outline:hover {
+  border-color: var(--primary);
+  color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+}
+
+.btn-large {
+  padding: 1.05rem 2.1rem;
+  font-size: 1.05rem;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn-soft {
+  background: var(--bg-surface);
+  border-color: var(--border-soft);
+  color: var(--text-main);
+}
+
+.btn-soft:hover {
+  background: var(--text-main);
+  border-color: var(--text-main);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Ripple (δημιουργείται από effects.js) */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+  transform: scale(0);
+  animation: ripple 0.7s ease-out forwards;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* --- Section tag ----------------------------------------------------------- */
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  margin-bottom: 1.1rem;
+  border-radius: var(--radius-pill);
+  background: var(--primary-light);
+  border: 1px solid var(--primary-border);
+  color: var(--primary-dark);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.section-tag::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.18);
+}
+
+/* --- Badge pill (με shine) ------------------------------------------------- */
+.badge-pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.5rem 1.2rem;
+  border-radius: var(--radius-pill);
+  background: #fff;
+  border: 1px solid var(--primary-border);
+  color: var(--primary-dark);
+  font-size: 0.85rem;
+  font-weight: 700;
+  box-shadow: 0 6px 20px -10px rgba(249, 115, 22, 0.5);
+  overflow: hidden;
+}
+
+.badge-pill i {
+  color: var(--primary);
+}
+
+.badge-pill::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.9), transparent);
+  animation: shine 3.5s ease-in-out infinite;
+}
+
+/* --- Icon box -------------------------------------------------------------- */
+.icon-box {
+  width: 58px;
+  height: 58px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-md);
+  background: var(--gradient-brand);
+  color: #fff;
+  font-size: 1.4rem;
+  box-shadow: 0 12px 24px -10px rgba(225, 29, 72, 0.55);
+  transition: transform var(--dur) var(--ease-spring);
+}
+
+.icon-box--soft {
+  background: var(--primary-light);
+  color: var(--primary);
+  border: 1px solid var(--primary-border);
+  box-shadow: none;
+}
+
+/* --- Spotlight card (glow που ακολουθεί τον κέρσορα) ----------------------- */
+[data-spotlight] {
+  position: relative;
+  isolation: isolate;
+}
+
+[data-spotlight]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(
+    420px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(249, 115, 22, 0.13),
+    transparent 45%
+  );
+  opacity: 0;
+  transition: opacity var(--dur) ease;
+  pointer-events: none;
+}
+
+[data-spotlight]:hover::before {
+  opacity: 1;
+}
+
+/* --- Preloader ------------------------------------------------------------- */
+.preloader {
+  display: none;
+}
+
+.js .preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: grid;
+  place-items: center;
+  background: var(--bg-page);
+  transition:
+    opacity 0.6s var(--ease-out),
+    visibility 0.6s;
+}
+
+.js body.is-loaded .preloader {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.preloader-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.preloader-bar {
+  width: 140px;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--border-soft);
+  overflow: hidden;
+}
+
+.preloader-bar span {
+  display: block;
+  width: 40%;
+  height: 100%;
+  background: var(--gradient-brand);
+  animation: loader-bar 1s ease-in-out infinite;
+}
+
+/* --- Scroll progress ------------------------------------------------------- */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1100;
+  width: 100%;
+  height: 3px;
+  background: var(--gradient-brand);
+  transform-origin: 0 50%;
+  transform: scaleX(var(--progress, 0));
+}
+
+/* --- Floating buttons (Back to top + WhatsApp) ----------------------------- */
+.floating-actions {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 900;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.back-to-top {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--text-main);
+  box-shadow: var(--shadow-card);
+  opacity: 0;
+  visibility: hidden;
+  translate: 0 16px;
+  transition:
+    opacity var(--dur) var(--ease-out),
+    translate var(--dur) var(--ease-out),
+    visibility var(--dur),
+    color var(--dur-fast);
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  translate: 0 0;
+}
+
+.back-to-top:hover {
+  color: var(--primary);
+}
+
+.back-to-top svg {
+  position: absolute;
+  inset: 0;
+  transform: rotate(-90deg);
+}
+
+.back-to-top circle {
+  fill: none;
+  stroke-width: 3;
+}
+
+.back-to-top .ring-bg {
+  stroke: var(--border-soft);
+}
+
+.back-to-top .ring-progress {
+  stroke: var(--primary);
+  stroke-linecap: round;
+  stroke-dasharray: 138.2;
+  stroke-dashoffset: calc(138.2 - 138.2 * var(--progress, 0));
+}
+
+.whatsapp-btn {
+  position: relative;
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #25d366;
+  color: #fff;
+  font-size: 1.9rem;
+  box-shadow: 0 12px 28px -8px rgba(37, 211, 102, 0.7);
+  transition: transform var(--dur) var(--ease-spring);
+}
+
+.whatsapp-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #25d366;
+  z-index: -1;
+  animation: pulse-ring 2s ease-out infinite;
+}
+
+.whatsapp-btn:hover {
+  transform: scale(1.1) rotate(-8deg);
+}
