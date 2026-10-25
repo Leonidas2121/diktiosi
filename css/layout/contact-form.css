@@ -24,13 +24,10 @@
   grid-column: 1 / -1;
 }
 
-/* Κρυφό πεδίο κατά των spam bots */
+/* Κρυφό πεδίο κατά των spam bots.
+   display:none ώστε να μην το συμπληρώνει το autofill του browser. */
 .form-honey {
-  position: absolute;
-  left: -9999px;
-  width: 1px;
-  height: 1px;
-  opacity: 0;
+  display: none !important;
 }
 
 /* --- Πεδία ----------------------------------------------------------------- */

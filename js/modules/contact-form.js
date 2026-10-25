@@ -86,9 +86,6 @@ window.Diktiosi.initContactForm = function () {
     e.preventDefault();
     status.textContent = "";
 
-    // Αν το κρυφό πεδίο έχει τιμή, είναι bot
-    if (form.querySelector(".form-honey").value) return;
-
     const invalid = Array.from(fields).filter((field) => !validateField(field));
     if (invalid.length) {
       const first = invalid[0].querySelector("input, textarea");
