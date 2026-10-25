@@ -46,8 +46,8 @@
     <link rel="stylesheet" href="css/layout/services.css" />
     <link rel="stylesheet" href="css/layout/pricing.css" />
     <link rel="stylesheet" href="css/layout/compliance.css" />
-    <link rel="stylesheet" href="css/layout/contact.css" />
-    <link rel="stylesheet" href="css/layout/contact-form.css?v=4" />
+    <link rel="stylesheet" href="css/layout/contact.css?v=5" />
+    <link rel="stylesheet" href="css/layout/contact-form.css?v=5" />
     <link rel="stylesheet" href="css/layout/footer.css" />
     <link rel="stylesheet" href="css/responsive.css" />
 
@@ -58,8 +58,9 @@
     <script src="js/modules/counters.js" defer></script>
     <script src="js/modules/effects.js" defer></script>
     <script src="js/modules/typewriter.js" defer></script>
-    <script src="js/modules/contact-form.js?v=4" defer></script>
-    <script src="js/main.js?v=4" defer></script>
+    <script src="js/modules/contact-form.js?v=5" defer></script>
+    <script src="js/modules/copy.js?v=5" defer></script>
+    <script src="js/main.js?v=5" defer></script>
   </head>
 
   <body>
@@ -763,17 +764,35 @@
                 </div>
               </a>
 
-              <!-- Email -->
-              <a
-                href="mailto:diktiosi@outlook.com?subject=Ενδιαφέρον%20για%20Κατασκευή%20Ιστοσελίδας"
-                class="direct-contact-card"
-              >
+              <!-- Email: αντιγραφή ή άνοιγμα σε Gmail / Outlook web (χωρίς mailto) -->
+              <div class="direct-contact-card email-card">
                 <div class="contact-icon"><i class="fas fa-envelope"></i></div>
                 <div class="contact-info">
                   <span class="contact-label">Email Επικοινωνίας</span>
-                  <span class="contact-val">diktiosi@outlook.com</span>
+                  <span class="contact-val contact-val--select">diktiosi@outlook.com</span>
+                  <div class="email-actions">
+                    <button type="button" class="email-action" data-copy="diktiosi@outlook.com">
+                      <i class="far fa-copy"></i> <span>Αντιγραφή</span>
+                    </button>
+                    <a
+                      class="email-action"
+                      href="https://mail.google.com/mail/?view=cm&fs=1&to=diktiosi@outlook.com&su=Ενδιαφέρον%20για%20Κατασκευή%20Ιστοσελίδας"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      <i class="fab fa-google"></i> Gmail
+                    </a>
+                    <a
+                      class="email-action"
+                      href="https://outlook.live.com/mail/0/deeplink/compose?to=diktiosi@outlook.com&subject=Ενδιαφέρον%20για%20Κατασκευή%20Ιστοσελίδας"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      <i class="fab fa-microsoft"></i> Outlook
+                    </a>
+                  </div>
                 </div>
-              </a>
+              </div>
             </div>
 
             <div class="contact-note">

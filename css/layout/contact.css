@@ -138,6 +138,67 @@
   overflow-wrap: anywhere;
 }
 
+/* --- Κάρτα email: αντιγραφή & webmail ------------------------------------ */
+.email-card {
+  align-items: flex-start;
+}
+
+.contact-val--select {
+  user-select: all;
+  cursor: text;
+}
+
+.email-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.7rem;
+}
+
+.email-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.38rem 0.8rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.18);
+  color: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  transition:
+    background-color var(--dur-fast) ease,
+    border-color var(--dur-fast) ease,
+    color var(--dur-fast) ease,
+    transform var(--dur) var(--ease-spring);
+}
+
+.email-action:hover {
+  transform: translateY(-2px);
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+/* Όταν η κάρτα γίνεται λευκή στο hover */
+.email-card:hover .email-action {
+  border-color: var(--border-soft);
+  background: var(--bg-surface);
+}
+
+.email-card:hover .email-action:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.email-action.is-copied,
+.email-card:hover .email-action.is-copied {
+  background: var(--success);
+  border-color: var(--success);
+  color: #fff;
+}
+
 .contact-note {
   display: inline-flex;
   align-items: center;

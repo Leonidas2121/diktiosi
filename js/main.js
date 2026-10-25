@@ -11,6 +11,7 @@
     "initEffects",
     "initTypewriter",
     "initContactForm",
+    "initCopy",
   ];
 
   const start = () => {
