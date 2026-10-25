@@ -364,26 +364,24 @@
 }
 
 /* --- Επιτυχία ------------------------------------------------------------- */
+/* Μετά την αποστολή η φόρμα "μαζεύει" και μένει μόνο το μήνυμα επιτυχίας */
 .form-success {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-  padding: 2rem;
-  background: #fff;
+  padding: 2.5rem 1rem;
   text-align: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity var(--dur) ease, visibility var(--dur);
+}
+
+.contact-form[data-state="success"] > :not(.form-success) {
+  display: none;
 }
 
 .contact-form[data-state="success"] .form-success {
-  opacity: 1;
-  visibility: visible;
+  display: flex;
+  animation: reveal-zoom 0.6s var(--ease-out) both;
 }
 
 .success-icon {

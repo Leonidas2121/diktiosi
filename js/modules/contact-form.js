@@ -118,6 +118,7 @@ window.Diktiosi.initContactForm = function () {
 
       form.reset();
       setState("success");
+      form.scrollIntoView({ behavior: "smooth", block: "center" });
     } catch (err) {
       console.error("[Diktiosi] Αποτυχία αποστολής φόρμας:", err);
       setState("idle");
