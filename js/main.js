@@ -10,6 +10,7 @@
     "initCounters",
     "initEffects",
     "initTypewriter",
+    "initContactForm",
   ];
 
   const start = () => {

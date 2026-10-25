@@ -1,0 +1,438 @@
+/* ==========================================================================
+   CONTACT FORM
+   ========================================================================== */
+.contact-form {
+  position: relative;
+  margin: 0 auto 2.4rem;
+  padding: clamp(1.4rem, 1rem + 2vw, 2.4rem);
+  border-radius: var(--radius-lg);
+  background: #fff;
+  color: var(--text-main);
+  text-align: left;
+  box-shadow: 0 30px 60px -25px rgba(15, 23, 42, 0.45);
+  overflow: hidden;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem 1.3rem;
+  margin-bottom: 1.6rem;
+}
+
+.form-full {
+  grid-column: 1 / -1;
+}
+
+/* Κρυφό πεδίο κατά των spam bots */
+.form-honey {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+/* --- Πεδία ----------------------------------------------------------------- */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.form-field > label,
+.package-picker legend {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.req {
+  color: var(--accent);
+}
+
+.input-wrap {
+  position: relative;
+}
+
+.input-wrap i {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  translate: 0 -50%;
+  font-size: 0.9rem;
+  color: var(--text-light);
+  pointer-events: none;
+  transition: color var(--dur-fast) ease;
+}
+
+.input-wrap:focus-within i {
+  color: var(--primary);
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="tel"],
+.contact-form textarea {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border-soft);
+  background: var(--bg-page);
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  transition:
+    border-color var(--dur-fast) ease,
+    background-color var(--dur-fast) ease,
+    box-shadow var(--dur-fast) ease;
+}
+
+.input-wrap input {
+  padding-left: 2.7rem !important;
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: var(--text-light);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.15);
+}
+
+.form-field.is-invalid input,
+.form-field.is-invalid textarea {
+  border-color: var(--danger);
+  background: var(--danger-light);
+}
+
+.field-error {
+  min-height: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--danger);
+}
+
+.field-error:empty {
+  display: none;
+}
+
+/* --- Επιλογή πακέτου (κάρτες) ---------------------------------------------- */
+.package-picker {
+  border: none;
+  min-width: 0;
+}
+
+.package-picker legend {
+  margin-bottom: 0.6rem;
+}
+
+.package-options {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.7rem;
+}
+
+.package-option {
+  position: relative;
+  cursor: pointer;
+}
+
+.package-option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.package-card {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  padding: 1rem 0.9rem;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--border-soft);
+  background: var(--bg-page);
+  transition:
+    border-color var(--dur-fast) ease,
+    background-color var(--dur-fast) ease,
+    box-shadow var(--dur) var(--ease-out),
+    transform var(--dur) var(--ease-spring);
+}
+
+.package-card i {
+  width: 34px;
+  height: 34px;
+  margin-bottom: 0.4rem;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: var(--primary-light);
+  color: var(--primary);
+  font-size: 0.85rem;
+  transition: background var(--dur) ease, color var(--dur) ease;
+}
+
+.package-card strong {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  line-height: 1.25;
+}
+
+.package-card small {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* Σημάδι επιλογής */
+.package-card::after {
+  content: "\f00c";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--gradient-brand);
+  color: #fff;
+  font-size: 0.6rem;
+  transform: scale(0);
+  transition: transform var(--dur) var(--ease-spring);
+}
+
+.package-option:hover .package-card {
+  border-color: var(--primary-border);
+  transform: translateY(-3px);
+}
+
+.package-option input:checked + .package-card {
+  border-color: var(--primary);
+  background: #fff;
+  box-shadow: 0 12px 26px -14px rgba(249, 115, 22, 0.7);
+}
+
+.package-option input:checked + .package-card i {
+  background: var(--gradient-brand);
+  color: #fff;
+}
+
+.package-option input:checked + .package-card::after {
+  transform: scale(1);
+}
+
+.package-option input:focus-visible + .package-card {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.package-picker.is-invalid .package-card {
+  border-color: rgba(220, 38, 38, 0.45);
+}
+
+/* Λάμψη όταν το πακέτο επιλέγεται από τα κουμπιά των καρτών τιμών */
+.package-picker.is-highlight .package-option input:checked + .package-card {
+  animation: package-flash 1.2s var(--ease-out);
+}
+
+@keyframes package-flash {
+  0% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.6); }
+  100% { box-shadow: 0 0 0 14px rgba(249, 115, 22, 0); }
+}
+
+/* --- Συναίνεση ------------------------------------------------------------- */
+.consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  font-size: 0.86rem;
+  font-weight: 500 !important;
+  color: var(--text-muted) !important;
+  cursor: pointer;
+}
+
+.consent input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.consent-box {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  margin-top: 1px;
+  display: grid;
+  place-items: center;
+  border-radius: 7px;
+  border: 1.5px solid var(--border-strong);
+  background: var(--bg-page);
+  color: #fff;
+  font-size: 0.65rem;
+  transition: all var(--dur-fast) ease;
+}
+
+.consent-box i {
+  transform: scale(0);
+  transition: transform var(--dur) var(--ease-spring);
+}
+
+.consent input:checked + .consent-box {
+  border-color: var(--primary);
+  background: var(--gradient-brand);
+}
+
+.consent input:checked + .consent-box i {
+  transform: scale(1);
+}
+
+.consent input:focus-visible + .consent-box {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.form-field.is-invalid .consent-box {
+  border-color: var(--danger);
+}
+
+/* --- Κουμπί αποστολής & καταστάσεις --------------------------------------- */
+.form-submit .submit-loading {
+  display: none;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.contact-form[data-state="loading"] .submit-label {
+  display: none;
+}
+
+.contact-form[data-state="loading"] .submit-loading {
+  display: inline-flex;
+}
+
+.contact-form[data-state="loading"] .form-submit {
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.form-submit .fa-paper-plane {
+  margin-left: 0.35rem;
+  transition: transform var(--dur) var(--ease-spring);
+}
+
+.form-submit:hover .fa-paper-plane {
+  transform: translate(4px, -4px) rotate(8deg);
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2.5px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.form-status {
+  margin-top: 0.9rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--danger);
+}
+
+.form-status:empty {
+  display: none;
+}
+
+/* --- Επιτυχία ------------------------------------------------------------- */
+.form-success {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 2rem;
+  background: #fff;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--dur) ease, visibility var(--dur);
+}
+
+.contact-form[data-state="success"] .form-success {
+  opacity: 1;
+  visibility: visible;
+}
+
+.success-icon {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 0.6rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--success);
+  color: #fff;
+  font-size: 2rem;
+  box-shadow: 0 0 0 10px rgba(16, 185, 129, 0.15), 0 0 0 20px rgba(16, 185, 129, 0.07);
+}
+
+.contact-form[data-state="success"] .success-icon {
+  animation: check-pop 0.7s var(--ease-spring) 0.15s both;
+}
+
+.form-success h3 {
+  font-size: 1.6rem;
+}
+
+.form-success p {
+  max-width: 380px;
+  color: var(--text-muted);
+  margin-bottom: 0.8rem;
+}
+
+/* --- Διαχωριστικό πριν τα στοιχεία επικοινωνίας --------------------------- */
+.contact-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.6rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.contact-divider::before,
+.contact-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.4);
+}

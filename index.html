@@ -12,7 +12,7 @@
 
     <!-- Open Graph / Meta Tags -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://prelorent-netizen.github.io/OUR-SITE/" />
+    <meta property="og:url" content="https://diktiosi.gr/" />
     <meta property="og:title" content="Diktiosi | Κατασκευή & Φιλοξενία Ιστοσελίδων ΙΚΕ | Πλήρης Συμμόρφωση ΓΕΜΗ" />
     <meta
       property="og:description"
@@ -47,6 +47,7 @@
     <link rel="stylesheet" href="css/layout/pricing.css" />
     <link rel="stylesheet" href="css/layout/compliance.css" />
     <link rel="stylesheet" href="css/layout/contact.css" />
+    <link rel="stylesheet" href="css/layout/contact-form.css" />
     <link rel="stylesheet" href="css/layout/footer.css" />
     <link rel="stylesheet" href="css/responsive.css" />
 
@@ -57,6 +58,7 @@
     <script src="js/modules/counters.js" defer></script>
     <script src="js/modules/effects.js" defer></script>
     <script src="js/modules/typewriter.js" defer></script>
+    <script src="js/modules/contact-form.js" defer></script>
     <script src="js/main.js" defer></script>
   </head>
 
@@ -307,7 +309,7 @@
                 </a>
               </div>
 
-              <a href="#contact" class="btn btn-soft btn-block">Επιλογή Πακέτου</a>
+              <a href="#contact-form" class="btn btn-soft btn-block" data-package="ΙΚΕ Compliance">Επιλογή Πακέτου</a>
             </article>
 
             <!-- ΠΑΚΕΤΟ 2 (FEATURED) -->
@@ -356,7 +358,7 @@
                 </a>
               </div>
 
-              <a href="#contact" class="btn btn-primary btn-block">Επιλογή Πακέτου <i class="fas fa-arrow-right"></i></a>
+              <a href="#contact-form" class="btn btn-primary btn-block" data-package="One-Page Business">Επιλογή Πακέτου <i class="fas fa-arrow-right"></i></a>
             </article>
 
             <!-- ΠΑΚΕΤΟ 3 -->
@@ -397,7 +399,7 @@
                 </a>
               </div>
 
-              <a href="#contact" class="btn btn-soft btn-block">Επιλογή Πακέτου</a>
+              <a href="#contact-form" class="btn btn-soft btn-block" data-package="Multi-Page">Επιλογή Πακέτου</a>
             </article>
 
             <!-- ΠΑΚΕΤΟ 4 -->
@@ -439,7 +441,7 @@
                 </div>
               </div>
 
-              <a href="#contact" class="btn btn-soft btn-block">Επιλογή Πακέτου</a>
+              <a href="#contact-form" class="btn btn-soft btn-block" data-package="Custom Solution">Επιλογή Πακέτου</a>
             </article>
           </div>
         </div>
@@ -616,6 +618,141 @@
               έναρξη.
             </p>
 
+            <!-- Φόρμα επικοινωνίας
+                 Τα μηνύματα στέλνονται μέσω FormSubmit στο email του action / data-endpoint.
+                 Για αλλαγή παραλήπτη, άλλαξε το email και στα δύο σημεία. -->
+            <form
+              class="contact-form"
+              id="contact-form"
+              action="https://formsubmit.co/diktiosi@outlook.com"
+              method="POST"
+              data-endpoint="https://formsubmit.co/ajax/diktiosi@outlook.com"
+              novalidate
+            >
+              <!-- Ρυθμίσεις FormSubmit -->
+              <input type="hidden" name="_subject" value="Νέο αίτημα από τη φόρμα του Diktiosi" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="text" name="_honey" class="form-honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+              <div class="form-grid">
+                <div class="form-field">
+                  <label for="cf-name">Ονοματεπώνυμο <span class="req">*</span></label>
+                  <div class="input-wrap">
+                    <i class="fas fa-user"></i>
+                    <input id="cf-name" name="Ονοματεπώνυμο" type="text" autocomplete="name" placeholder="π.χ. Γιώργος Παπαδόπουλος" required />
+                  </div>
+                  <span class="field-error"></span>
+                </div>
+
+                <div class="form-field">
+                  <label for="cf-company">Επωνυμία Εταιρείας</label>
+                  <div class="input-wrap">
+                    <i class="fas fa-building"></i>
+                    <input id="cf-company" name="Εταιρεία" type="text" autocomplete="organization" placeholder="π.χ. Παπαδόπουλος ΙΚΕ" />
+                  </div>
+                  <span class="field-error"></span>
+                </div>
+
+                <div class="form-field">
+                  <label for="cf-email">Email <span class="req">*</span></label>
+                  <div class="input-wrap">
+                    <i class="fas fa-envelope"></i>
+                    <input id="cf-email" name="email" type="email" autocomplete="email" placeholder="you@example.gr" required />
+                  </div>
+                  <span class="field-error"></span>
+                </div>
+
+                <div class="form-field">
+                  <label for="cf-phone">Τηλέφωνο <span class="req">*</span></label>
+                  <div class="input-wrap">
+                    <i class="fas fa-phone-alt"></i>
+                    <input id="cf-phone" name="Τηλέφωνο" type="tel" autocomplete="tel" placeholder="69x xxx xxxx" pattern="[0-9 +\-\(\)]{10,20}" required />
+                  </div>
+                  <span class="field-error"></span>
+                </div>
+
+                <fieldset class="form-field form-full package-picker">
+                  <legend>Πακέτο που σας ενδιαφέρει <span class="req">*</span></legend>
+                  <div class="package-options">
+                    <label class="package-option">
+                      <input type="radio" name="Πακέτο" value="ΙΚΕ Compliance (119€/έτος)" required />
+                      <span class="package-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <strong>ΙΚΕ Compliance</strong>
+                        <small>119€ / έτος</small>
+                      </span>
+                    </label>
+                    <label class="package-option">
+                      <input type="radio" name="Πακέτο" value="One-Page Business (200€ + 150€/έτος)" />
+                      <span class="package-card">
+                        <i class="fas fa-star"></i>
+                        <strong>One-Page Business</strong>
+                        <small>200€ + 150€ / έτος</small>
+                      </span>
+                    </label>
+                    <label class="package-option">
+                      <input type="radio" name="Πακέτο" value="Multi-Page (400€ + 200€/έτος)" />
+                      <span class="package-card">
+                        <i class="fas fa-copy"></i>
+                        <strong>Multi-Page</strong>
+                        <small>400€ + 200€ / έτος</small>
+                      </span>
+                    </label>
+                    <label class="package-option">
+                      <input type="radio" name="Πακέτο" value="Custom Solution (από 590€ + 250€/έτος)" />
+                      <span class="package-card">
+                        <i class="fas fa-sliders-h"></i>
+                        <strong>Custom Solution</strong>
+                        <small>από 590€ + 250€ / έτος</small>
+                      </span>
+                    </label>
+                    <label class="package-option">
+                      <input type="radio" name="Πακέτο" value="Δεν είμαι σίγουρος/η – θέλω συμβουλή" />
+                      <span class="package-card">
+                        <i class="fas fa-question"></i>
+                        <strong>Δεν είμαι σίγουρος/η</strong>
+                        <small>Θέλω συμβουλή</small>
+                      </span>
+                    </label>
+                  </div>
+                  <span class="field-error"></span>
+                </fieldset>
+
+                <div class="form-field form-full">
+                  <label for="cf-message">Μήνυμα</label>
+                  <textarea id="cf-message" name="Μήνυμα" rows="4" placeholder="Πείτε μας λίγα λόγια για την επιχείρησή σας ή ό,τι άλλο χρειάζεστε..."></textarea>
+                  <span class="field-error"></span>
+                </div>
+
+                <div class="form-field form-full">
+                  <label class="consent">
+                    <input type="checkbox" name="Συναίνεση GDPR" value="Ναι" required />
+                    <span class="consent-box"><i class="fas fa-check"></i></span>
+                    <span>Συμφωνώ να χρησιμοποιηθούν τα στοιχεία μου μόνο για την επικοινωνία σχετικά με το αίτημά μου.</span>
+                  </label>
+                  <span class="field-error"></span>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-large btn-block form-submit">
+                <span class="submit-label">Αποστολή Αιτήματος <i class="fas fa-paper-plane"></i></span>
+                <span class="submit-loading"><span class="spinner"></span> Αποστολή...</span>
+              </button>
+
+              <p class="form-status" role="status" aria-live="polite"></p>
+
+              <!-- Μήνυμα επιτυχίας -->
+              <div class="form-success" aria-hidden="true">
+                <div class="success-icon"><i class="fas fa-check"></i></div>
+                <h3>Ευχαριστούμε!</h3>
+                <p>Λάβαμε το αίτημά σας και θα επικοινωνήσουμε μαζί σας εντός λίγων ωρών.</p>
+                <button type="button" class="btn btn-soft form-reset">Νέο μήνυμα</button>
+              </div>
+            </form>
+
+            <div class="contact-divider"><span>ή επικοινωνήστε απευθείας</span></div>
+
             <div class="direct-contact-grid">
               <!-- Τηλέφωνο -->
               <a href="tel:+306900000000" class="direct-contact-card">
@@ -628,13 +765,13 @@
 
               <!-- Email -->
               <a
-                href="mailto:info@yourdomain.gr?subject=Ενδιαφέρον%20για%20Κατασκευή%20Ιστοσελίδας"
+                href="mailto:diktiosi@outlook.com?subject=Ενδιαφέρον%20για%20Κατασκευή%20Ιστοσελίδας"
                 class="direct-contact-card"
               >
                 <div class="contact-icon"><i class="fas fa-envelope"></i></div>
                 <div class="contact-info">
                   <span class="contact-label">Email Επικοινωνίας</span>
-                  <span class="contact-val">info@yourdomain.gr</span>
+                  <span class="contact-val">diktiosi@outlook.com</span>
                 </div>
               </a>
             </div>
