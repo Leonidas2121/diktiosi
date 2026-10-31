@@ -1,0 +1,270 @@
+/* ==========================================================================
+   COMPLIANCE & LEGAL
+   ========================================================================== */
+.compliance {
+  background: var(--bg-page);
+}
+
+/* --- Highlights ------------------------------------------------------------ */
+.compliance-highlights {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.highlight-card {
+  display: flex;
+  gap: 1.1rem;
+  align-items: flex-start;
+  padding: 1.7rem;
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-card);
+  transition:
+    transform var(--dur) var(--ease-out),
+    border-color var(--dur) ease,
+    box-shadow var(--dur) ease;
+}
+
+.highlight-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--primary-border);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.highlight-card:hover .icon-box {
+  transform: scale(1.1) rotate(6deg);
+}
+
+.highlight-card .icon-box {
+  width: 50px;
+  height: 50px;
+  font-size: 1.2rem;
+}
+
+.highlight-card h4 {
+  font-size: 1.05rem;
+  margin-bottom: 0.4rem;
+}
+
+.highlight-card p {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+/* --- Κεντρική κάρτα -------------------------------------------------------- */
+.legal-content-card {
+  padding: clamp(1.5rem, 1rem + 3vw, 3.2rem);
+  border-radius: var(--radius-xl);
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-card);
+}
+
+.legal-block + .legal-block {
+  margin-top: 3rem;
+  padding-top: 3rem;
+  border-top: 1px dashed var(--border-soft);
+}
+
+.legal-block h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: clamp(1.15rem, 1rem + 0.6vw, 1.45rem);
+  margin-bottom: 1rem;
+}
+
+.legal-block h3 i {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--primary-light);
+  color: var(--primary);
+  font-size: 1.05rem;
+}
+
+.legal-block > p {
+  color: var(--text-muted);
+  font-size: 0.97rem;
+  margin-bottom: 1.2rem;
+}
+
+/* Checklist */
+.legal-checklist {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.8rem;
+}
+
+.legal-checklist li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-page);
+  border: 1px solid var(--border-soft);
+  font-size: 0.93rem;
+  font-weight: 500;
+  transition:
+    border-color var(--dur-fast) ease,
+    background-color var(--dur-fast) ease,
+    transform var(--dur) var(--ease-out);
+}
+
+.legal-checklist li:hover {
+  background: #fff;
+  border-color: var(--success);
+  transform: translateX(4px);
+}
+
+.legal-checklist li i {
+  flex-shrink: 0;
+  font-size: 1.1rem;
+  color: var(--success);
+}
+
+.js .legal-checklist li.is-visible i {
+  animation: check-pop 0.6s var(--ease-spring) both;
+  animation-delay: calc(var(--reveal-delay, 0ms) + 250ms);
+}
+
+/* --- Πίνακας προστίμων ----------------------------------------------------- */
+.table-wrap {
+  overflow-x: auto;
+  margin: 1.3rem 0 0.8rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-soft);
+}
+
+.compliance-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  text-align: left;
+}
+
+.compliance-table th,
+.compliance-table td {
+  padding: 1.05rem 1.2rem;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.compliance-table thead th {
+  background: var(--bg-dark);
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.compliance-table tbody tr {
+  transition: background-color var(--dur-fast) ease;
+}
+
+.compliance-table tbody tr:nth-child(even) {
+  background: var(--bg-page);
+}
+
+.compliance-table tbody tr:hover {
+  background: var(--primary-light);
+}
+
+.compliance-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.compliance-table td small {
+  color: var(--text-muted);
+}
+
+.compliance-table .fine {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.compliance-table .fine-high {
+  color: var(--danger);
+}
+
+.compliance-table .row-alert {
+  text-align: center;
+  font-weight: 600;
+  color: var(--danger);
+  background: var(--danger-light);
+}
+
+.table-note {
+  font-size: 0.83rem;
+  font-style: italic;
+  color: var(--text-light);
+}
+
+/* --- Assurance box --------------------------------------------------------- */
+.assurance-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  margin: 3rem 0 1.8rem;
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  background: var(--gradient-soft);
+  border: 1px solid var(--primary-border);
+  overflow: hidden;
+}
+
+.assurance-box::after {
+  content: "";
+  position: absolute;
+  right: -60px;
+  top: -60px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.18), transparent 70%);
+}
+
+.assurance-icon {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--gradient-brand);
+  color: #fff;
+  font-size: 1.6rem;
+  box-shadow: var(--shadow-brand);
+}
+
+.assurance-text h4 {
+  font-size: 1.2rem;
+  margin-bottom: 0.35rem;
+}
+
+.assurance-text p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.legal-disclaimer {
+  padding-top: 1.3rem;
+  border-top: 1px solid var(--border-soft);
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--text-light);
+}
+
+.legal-disclaimer i {
+  color: var(--primary);
+}
