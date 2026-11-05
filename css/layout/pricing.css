@@ -341,3 +341,109 @@
 .preview-note:hover i {
   transform: none;
 }
+
+/* --- Τι περιλαμβάνει η ετήσια συντήρηση ------------------------------------ */
+.care-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+  gap: 2rem;
+  align-items: center;
+  margin-top: 3rem;
+  padding: 2rem 2.2rem;
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--primary-border);
+  box-shadow: var(--shadow-card);
+}
+
+.care-intro {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.care-icon {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-md);
+  background: var(--gradient-brand);
+  color: #fff;
+  font-size: 1.3rem;
+}
+
+.care-intro h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.45rem;
+}
+
+.care-intro p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.care-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.care-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1rem;
+  border-radius: var(--radius-sm);
+  background: var(--primary-light);
+  border: 1px solid var(--primary-border);
+}
+
+.care-list li i {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--primary);
+  font-size: 0.9rem;
+}
+
+.care-list strong {
+  display: block;
+  margin-bottom: 0.2rem;
+  font-size: 0.92rem;
+}
+
+.care-list span {
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
+@media (max-width: 1024px) {
+  .care-panel {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .care-panel {
+    padding: 1.5rem 1.2rem;
+  }
+
+  .care-list {
+    grid-template-columns: 1fr;
+  }
+
+  .care-list li {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .care-list li i {
+    flex-shrink: 0;
+  }
+}
