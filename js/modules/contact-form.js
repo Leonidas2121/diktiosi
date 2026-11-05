@@ -1,6 +1,6 @@
 /* ==========================================================================
-   CONTACT FORM — έλεγχος πεδίων & αποστολή μέσω FormSubmit (AJAX)
-   Ο παραλήπτης ορίζεται στο data-endpoint της φόρμας στο index.html.
+   CONTACT FORM — έλεγχος πεδίων & αποστολή μέσω Web3Forms (AJAX)
+   Ο παραλήπτης ορίζεται από το access_key της φόρμας στο index.html (Web3Forms).
    Τα κουμπιά με data-package="..." προεπιλέγουν το αντίστοιχο πακέτο.
    ========================================================================== */
 window.Diktiosi = window.Diktiosi || {};
@@ -79,11 +79,13 @@ window.Diktiosi.initContactForm = function () {
   const fallback = form.querySelector(".form-fallback");
   const FALLBACK_EMAIL = "diktiosi@outlook.com";
   const FALLBACK_PHONE = "306994243547";
+  // Ρυθμίσεις της υπηρεσίας — δεν μπαίνουν στο κείμενο του email / WhatsApp
+  const SERVICE_FIELDS = ["access_key", "subject", "from_name", "botcheck"];
 
   function showFallback(data) {
     const subject = "Αίτημα από τη φόρμα του Diktiosi";
     const body = Object.entries(data)
-      .filter(([key, value]) => !key.startsWith("_") && key !== "botcheck" && key !== "access_key" && value)
+      .filter(([key, value]) => !SERVICE_FIELDS.includes(key) && value)
       .map(([key, value]) => key + ": " + value)
       .join("\n");
     const enc = encodeURIComponent;

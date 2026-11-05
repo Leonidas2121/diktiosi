@@ -66,7 +66,7 @@
     <script src="js/modules/counters.js" defer></script>
     <script src="js/modules/effects.js" defer></script>
     <script src="js/modules/typewriter.js" defer></script>
-    <script src="js/modules/contact-form.js?v=6" defer></script>
+    <script src="js/modules/contact-form.js?v=7" defer></script>
     <script src="js/modules/copy.js?v=5" defer></script>
     <script src="js/main.js?v=5" defer></script>
   </head>
@@ -960,27 +960,31 @@
             </p>
 
             <!-- Φόρμα επικοινωνίας
-                 Τα μηνύματα στέλνονται μέσω FormSubmit στο email του action / data-endpoint.
-                 Ο κωδικός στο action / data-endpoint είναι το κρυφό email παραλήπτη του FormSubmit. -->
+                 Τα μηνύματα στέλνονται μέσω Web3Forms στο email που είναι
+                 δηλωμένο για το access_key (λογαριασμός στο web3forms.com). -->
             <form
               class="contact-form"
               id="contact-form"
-              action="https://formsubmit.co/e6e11e7d148e38e75e12c160a47bcdf0"
+              action="https://api.web3forms.com/submit"
               method="POST"
-              data-endpoint="https://formsubmit.co/ajax/e6e11e7d148e38e75e12c160a47bcdf0"
+              data-endpoint="https://api.web3forms.com/submit"
               novalidate
             >
-              <!-- Ρυθμίσεις FormSubmit -->
+              <!-- Ρυθμίσεις Web3Forms -->
               <input
                 type="hidden"
-                name="_subject"
+                name="access_key"
+                value="320aeda5-094e-4895-9d1f-10da0581c622"
+              />
+              <input
+                type="hidden"
+                name="subject"
                 value="Νέο αίτημα από τη φόρμα του Diktiosi"
               />
-              <input type="hidden" name="_template" value="table" />
-              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="from_name" value="Diktiosi" />
               <input
-                type="text"
-                name="_honey"
+                type="checkbox"
+                name="botcheck"
                 class="form-honey"
                 tabindex="-1"
                 autocomplete="off"
