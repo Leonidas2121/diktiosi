@@ -277,7 +277,7 @@
   will-change: transform;
 }
 
-/* --- Floating buttons (Back to top + WhatsApp) ----------------------------- */
+/* --- Floating buttons (Back to top + WhatsApp + Viber) --------------------- */
 .floating-actions {
   position: fixed;
   right: 1.5rem;
@@ -341,7 +341,8 @@
   stroke-dashoffset: 138.2;
 }
 
-.whatsapp-btn {
+.whatsapp-btn,
+.viber-btn {
   position: relative;
   width: 58px;
   height: 58px;
@@ -353,6 +354,15 @@
   font-size: 1.9rem;
   box-shadow: 0 12px 28px -8px rgba(37, 211, 102, 0.7);
   transition: transform var(--dur) var(--ease-spring);
+}
+
+.viber-btn {
+  background: #7360f2;
+  box-shadow: 0 12px 28px -8px rgba(115, 96, 242, 0.7);
+}
+
+.viber-btn:hover {
+  transform: scale(1.1) rotate(-8deg);
 }
 
 .whatsapp-btn::before {
