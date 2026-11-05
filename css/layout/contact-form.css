@@ -363,6 +363,40 @@
   display: none;
 }
 
+/* --- Εναλλακτική αποστολή (όταν αποτύχει η υπηρεσία φόρμας) --------------- */
+.form-fallback {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.form-fallback[hidden] {
+  display: none;
+}
+
+.fallback-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    background-color var(--dur-fast) ease,
+    color var(--dur-fast) ease;
+}
+
+.fallback-action:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
 /* --- Επιτυχία ------------------------------------------------------------- */
 /* Μετά την αποστολή η φόρμα "μαζεύει" και μένει μόνο το μήνυμα επιτυχίας */
 .form-success {

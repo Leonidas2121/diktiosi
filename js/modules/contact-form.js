@@ -75,6 +75,31 @@ window.Diktiosi.initContactForm = function () {
     });
   });
 
+  /* --- Εναλλακτική αποστολή (email / WhatsApp) αν αποτύχει η υπηρεσία --- */
+  const fallback = form.querySelector(".form-fallback");
+  const FALLBACK_EMAIL = "diktiosi@outlook.com";
+  const FALLBACK_PHONE = "306994243547";
+
+  function showFallback(data) {
+    const subject = "Αίτημα από τη φόρμα του Diktiosi";
+    const body = Object.entries(data)
+      .filter(([key, value]) => !key.startsWith("_") && key !== "botcheck" && key !== "access_key" && value)
+      .map(([key, value]) => key + ": " + value)
+      .join("\n");
+    const enc = encodeURIComponent;
+    const links = {
+      mailto: "mailto:" + FALLBACK_EMAIL + "?subject=" + enc(subject) + "&body=" + enc(body),
+      gmail:
+        "https://mail.google.com/mail/?view=cm&fs=1&to=" + FALLBACK_EMAIL +
+        "&su=" + enc(subject) + "&body=" + enc(body),
+      whatsapp: "https://wa.me/" + FALLBACK_PHONE + "?text=" + enc(subject + "\n\n" + body),
+    };
+    fallback.querySelectorAll("[data-fallback]").forEach((a) => {
+      a.href = links[a.dataset.fallback];
+    });
+    fallback.hidden = false;
+  }
+
   /* --- Καταστάσεις φόρμας: idle | loading | success --- */
   const setState = (state) => {
     form.dataset.state = state;
@@ -85,6 +110,7 @@ window.Diktiosi.initContactForm = function () {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     status.textContent = "";
+    fallback.hidden = true;
 
     const invalid = Array.from(fields).filter((field) => !validateField(field));
     if (invalid.length) {
@@ -100,8 +126,9 @@ window.Diktiosi.initContactForm = function () {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 20000);
 
+    const data = Object.fromEntries(new FormData(form).entries());
+
     try {
-      const data = Object.fromEntries(new FormData(form).entries());
       const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
@@ -111,9 +138,7 @@ window.Diktiosi.initContactForm = function () {
       const result = await response.json().catch(() => ({}));
 
       if (!response.ok || String(result.success) === "false") {
-        const error = new Error(result.message || "HTTP " + response.status);
-        error.serviceMessage = result.message;
-        throw error;
+        throw new Error(result.message || "HTTP " + response.status);
       }
 
       form.reset();
@@ -122,9 +147,10 @@ window.Diktiosi.initContactForm = function () {
     } catch (err) {
       console.error("[Diktiosi] Αποτυχία αποστολής φόρμας:", err);
       setState("idle");
-      status.textContent = err.serviceMessage
-        ? "Η αποστολή δεν ολοκληρώθηκε: " + err.serviceMessage
-        : "Κάτι πήγε στραβά με την αποστολή. Δοκιμάστε ξανά ή επικοινωνήστε μαζί μας τηλεφωνικά.";
+      status.textContent =
+        "Η αυτόματη αποστολή δεν ολοκληρώθηκε. Τα στοιχεία σας δεν χάθηκαν — " +
+        "στείλτε τα με ένα κλικ από εδώ:";
+      showFallback(data);
       status.scrollIntoView({ behavior: "smooth", block: "center" });
     } finally {
       clearTimeout(timeout);
